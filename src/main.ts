@@ -50,13 +50,17 @@ scene.add(camera);
 scene.updateMatrix();
 const fpsCounter = new FPSCounter();
 
+let frame = 0;
 // Render loop
 function loop() {
+  frame++;
   fpsCounter.update();
 
   camera.updateMatrixWorld(true);
 
-  glp.update(renderer);
+  if (frame % 1 === 0) {
+    glp.update(renderer);
+  }
 
   renderer.clearColor();
   renderer.render(scene, camera);
