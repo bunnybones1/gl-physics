@@ -43,7 +43,7 @@ const flipY = false;
 
 const mapName = "map";
 
-const gravityColor = new Color(0, physicsSettings.gravity, 0);
+const gravityColor = new Color(physicsSettings.wind, physicsSettings.gravity, 0);
 const initialVel = 0.0005;
 
 export default class GLSimPoints {
@@ -557,7 +557,7 @@ export default class GLSimPoints {
 
   private applyPhysicsSettings(next: typeof physicsSettings) {
     // Update gravity color green channel to reflect gravity value
-    gravityColor.setRGB(0, next.gravity, 0);
+    gravityColor.setRGB(next.wind, next.gravity, 0);
     if (this.velocityFrictionMat) {
       this.velocityFrictionMat.color.copy(gravityColor);
       this.velocityFrictionMat.opacity = next.frictionCoeff ?? this.velocityFrictionMat.opacity;
